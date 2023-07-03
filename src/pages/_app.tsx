@@ -32,22 +32,48 @@ export type AppState = {
     lucid?: Lucid;
     wAddr?: Address;
 
+    // Init App state
+    hello: string;
+
     // Project Script
-    projectScript: SpendingValidator;
+    projectScript?: SpendingValidator;
     projectScriptHash?: ScriptHash;
     projectAddress?: Address;
 
-    // Project Tokens
+    // Project Creator Tokens
     projectCreatorAssetClassHex?: Unit;
     projectCreatorTokPolicyIdHex?: PolicyId;
     projectCreatorTokTokenNameHex?: string;
     projectCreatorTokPolicy?: MintingPolicy;
-    projectWithNftUTxO?: UTxO;
+    // projectWithFundAckUTxO?: UTxO;
     projectUtxoWithNFTRef?: string;
+
+    // Funding Acknowledge Tokens
+    fundingAckTokenAssetClassHex?: Unit;
+    fundingAckTokenPolicyIdHex?: PolicyId;
+    fundingAckTokenTokenNameHex?: string;
+    fundingAckTokenPolicy?: MintingPolicy;
+    projectWithFundAckUTxO?: UTxO;
+
+    // Expenditure Proposal Tokens
+    expenditurePropTokenAssetClassHex?: Unit;
+    expenditurePropTokenPolicyIdHex?: PolicyId;
+    expenditurePropTokenTokenNameHex?: string;
+    expenditurePropTokenPolicy?: MintingPolicy;
+    projectWithExpenditurePropUTxO?: UTxO;
+
+    // Expenditure Spending Tokens
+    expenditureSpendTokenAssetClassHex?: Unit;
+    expenditureSpendTokenPolicyIdHex?: PolicyId;
+    expenditureSpendTokenTokenNameHex?: string;
+    expenditureSpendTokenPolicy?: MintingPolicy;
+    projectWithExpenditureSpendUTxO?: UTxO;
+
+
 }
 
 const initialAppState: AppState = {
-    projectScript: projectScript,
+    hello: "Kijani Fund Demo",
 };
 
 export const AppStateContext = createContext<{

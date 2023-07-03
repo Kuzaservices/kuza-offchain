@@ -1,4 +1,4 @@
-import { Lucid, TxComplete, TxHash } from "lucid-cardano";
+import { Address, Datum, Lucid, TxComplete, TxHash, UTxO } from "lucid-cardano";
 
 export const signAndSubmitTx = async (tx: TxComplete): Promise<TxHash> => {
     const signedTx = await tx.sign().complete();
@@ -24,3 +24,14 @@ export const findUTxO = async (lucid: Lucid, ref: string) => {
     ]);
     return utxos[0];
 };
+
+export const findDatumUTxoAtAtScript = async (lucid: Lucid, address: Address, datum: Datum): Promise<UTxO> => {
+    const projectUtxOs = await lucid.utxosAt(address).catch((err) => {
+        console.log("Can't find Oracle UtxO");
+    });
+
+    if (!projectUtxOs) return;
+    const datumUtxos :  UTxO[] = await projectUtxOs.filter((utxo) => utxo.datum == datum)
+
+    return await datumUtxos[0]
+}

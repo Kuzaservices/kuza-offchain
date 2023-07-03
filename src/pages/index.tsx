@@ -1,4 +1,4 @@
-import MintProjectOwnerToken from "../components/TokenMint";
+import { MintProjectOwnerToken, MintFundingAckInitialTokens } from "../components/TokenMint";
 import Project from "@/components/Project";
 import Donor from "@/components/Donor";
 import { useContext } from "react";
@@ -104,6 +104,7 @@ export default function Home() {
                 {isPerson == "owner" && (
                     <div className="shadow-[0_4px_0px_0px_rgba(0,0,0,0.25)] w-[664px] bg-zinc-50 border border-zinc-600 rounded-xl p-9">
                         <MintProjectOwnerToken />
+                        <MintFundingAckInitialTokens/>
                         <Project />
                     </div>
                 )}
@@ -112,6 +113,13 @@ export default function Home() {
                 {isPerson == "donor" && (
                     <div className="shadow-[0_4px_0px_0px_rgba(0,0,0,0.25)] w-[664px] bg-zinc-50 border border-zinc-600 rounded-xl px-9 pb-9">
                         <Donor />
+                    </div>
+                )}
+
+                {/* USER ACTIONS */}
+                {isPerson == "donor" && (
+                    <div className="shadow-[0_4px_0px_0px_rgba(0,0,0,0.25)] w-[664px] bg-zinc-50 border border-zinc-600 rounded-xl px-9 pb-9">
+                        
                     </div>
                 )}
             </div>
