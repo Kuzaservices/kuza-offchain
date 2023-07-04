@@ -415,6 +415,7 @@ export function MoveFundsFromProject() {
 
         console.log("Moving Funds From: " + lucid!.utils.validatorToAddress(projectScript));
         console.log("Moving Funds to: " + recipient);
+        console.log("");
 
         if (
             wAddr &&
@@ -436,7 +437,7 @@ export function MoveFundsFromProject() {
 
             console.log("Found lovelace utxos", adaUtxos);
 
-            const moveFundsRedeemer = new Constr(2, [BigInt(amount), pkh]);
+            const moveFundsRedeemer = new Constr(2, [amount, pkh]);
 
 
             const moveFundsDatum: ProjectDatum = {
@@ -464,6 +465,7 @@ export function MoveFundsFromProject() {
                     { inline: Data.to<ProjectDatum>(moveFundsDatum, ProjectDatum) },
                     { [expenditureSpendTokenAssetClassHex]: BigInt(1) },
                 )
+                .attachSpendingValidator(projectScript)
                 .addSignerKey(pkh)
                 .complete();
 
@@ -472,9 +474,6 @@ export function MoveFundsFromProject() {
         } else {
             alert("Move Funds details not present!")
         }
-
-
-
     }
 
     return (
